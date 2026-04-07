@@ -5,6 +5,7 @@ from rest_framework import status
 from .models import Resume
 from .serializers import ResumeSerializer
 from .services.parser import extract_text_from_pdf
+from .services.extractor import extract_skills
 
 class ResumeUploadView(APIView):
     permission_classes = [IsAuthenticated]
@@ -21,11 +22,14 @@ class ResumeUploadView(APIView):
         )
 
         extracted_text = extract_text_from_pdf(resume.file.path)
-
         resume.extracted_text = extracted_text
+
+        skills = extract_skills(extracted_text)
+        resume.extracted_skills = skills
+
         resume.save()
 
         return Response({
             "id": resume.id,
-            "message": "Resume uploaded and parsed successfully"
+            "skills": skills
         }, status=201)
