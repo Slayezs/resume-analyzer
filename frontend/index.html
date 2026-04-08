@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>rezume.ai</h2>
+    <div>
+        <button onclick="goTo('login.html')">Login</button>
+        <button onclick="goTo('register.html')">Register</button>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>Analyze your resume,<br> land the interview.</h1>
+    <p class="subtitle">Upload your resume and paste a job description to get an instant match score.</p>
+
+    <div class="upload-box">
+        <input type="file" id="resume-file">
+        <p>Drop your resume here</p>
+        <span>PDF or DOCX - Max 5MB</span>
+    </div>
+
+    <div class="job-section">
+        <label>Job Description</label>
+        <textarea id="job-desc" placeholder="Paste the job description here..."></textarea>
+    </div>
+    
+
+    <button class="analyze-btn" onclick="analyze()">Analyze match →</button>
+
+    <pre id="result"></pre>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
