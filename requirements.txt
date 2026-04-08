@@ -1,0 +1,10 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+python-dotenv
+
+pdfplumber
+
+gunicorn
+whitenoise
+psycopg2-binary
