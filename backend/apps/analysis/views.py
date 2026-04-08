@@ -6,6 +6,7 @@ from apps.resumes.models import Resume
 from .models import AnalysisResult
 from .services.matcher import match_resume_with_job
 from .services.ats_score import calculate_ats_score
+from .services.suggestions import generate_suggestions
 
 
 class AnalyzeResumeView(APIView):
@@ -39,9 +40,17 @@ class AnalyzeResumeView(APIView):
             missing_skills=result["missing_skills"]
         )
 
+        # Generate suggestions
+        suggestions = generate_suggestions(
+            result["match_score"],
+            result["missing_skills"],
+            resume.extracted_skills
+        )
+
         return Response({
             "match_score": analysis.match_score,
             "ats_score": analysis.ats_score,
             "matched_skills": analysis.matched_skills,
-            "missing_skills": analysis.missing_skills
+            "missing_skills": analysis.missing_skills,
+            "suggestions": suggestions
         })
