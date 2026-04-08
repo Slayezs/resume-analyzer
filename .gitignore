@@ -24,7 +24,3 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-
-# migrations (optional rule)
-**/migrations/*.py
-!**/migrations/__init__.py
